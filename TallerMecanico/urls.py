@@ -14,4 +14,5 @@ urlpatterns = [
     path('admin_panel/registrar_informe/<int:trabajo_id>/', registrar_informe, name='registrar_informe'),
     path('admin_panel/consultar_historico_reparaciones/<str:patente>/', consultar_historico_reparaciones, name='consultar_historico_reparaciones'),
     path('mecanico_panel/', mecanico_panel, name='dashboard_mecanico'),
+    path('mecanico_panel/ingresar_cliente/', ingresar_cliente, name='ingresar_cliente'),
 ]

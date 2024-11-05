@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
-from .models import Registro, Login, Mecanico, Trabajo, Informe, Vehiculo
+from .models import *
+from .forms import *
 
 # Vista para la página de inicio
 def inicio_view(request):
@@ -186,3 +187,18 @@ def consultar_historico_reparaciones(request, patente):
 
 def mecanico_panel(request):
     return render(request, 'InterfazMecanico/mecanico_panel.html')
+
+
+def ingresar_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cliente ingresado exitosamente.')
+            return redirect('listar_clientes')  # Redirige a una vista de listado de clientes después de guardar
+        else:
+            messages.error(request, 'Hubo un error al ingresar el cliente.')
+    else:
+        form = ClienteForm()
+    
+    return render(request, 'InterfazMecanico/ingresar_cliente.html', {'form': form})
