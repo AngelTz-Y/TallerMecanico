@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib import messages
 from .models import *
 from .forms import *
+from django.core.paginator import Paginator
 
 # Vista para la página de inicio
 def inicio_view(request):
@@ -202,3 +203,17 @@ def ingresar_cliente(request):
         form = ClienteForm()
     
     return render(request, 'InterfazMecanico/ingresar_cliente.html', {'form': form})
+
+
+def listar_clientes(request):
+    # Obtener todos los clientes
+    clientes = Cliente.objects.all().order_by('nombre')
+    # Paginador para mostrar 10 clientes por página
+    paginator = Paginator(clientes, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'InterfazMecanico/listar_clientes.html', context)
