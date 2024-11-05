@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Registro - Taller Mecánico{% endblock %}
+
+{% block content %}
+    <h2>Registro de Usuario</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario:</label>
+            <input type="text" class="form-control" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Rol:</label>
+            <select class="form-select" name="role">
+                <option value="cliente">Cliente</option>
+                <option value="admin">Administrador</option>
+                <option value="mecanico">Mecánico</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+{% endblock %}
