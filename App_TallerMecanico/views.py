@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 from .models import *
-from .forms import *
 from django.core.paginator import Paginator
+from django.forms import ModelForm,DateInput
 
 # Vista para la página de inicio
 def inicio_view(request):
@@ -190,18 +190,30 @@ def mecanico_panel(request):
     return render(request, 'InterfazMecanico/mecanico_panel.html')
 
 
+class ClienteForm(ModelForm):
+    class Meta:
+        model = Cliente
+        fields = ['rut', 'nombre', 'apellido', 'fecha_nacimiento', 'genero', 'email', 'telefono', 'direccion']
+        widgets = {
+            'fecha_nacimiento': DateInput(attrs={'type': 'date', 'placeholder': 'YYYY-MM-DD'}, format='%Y-%m-%d'),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ClienteForm, self).__init__(*args, **kwargs)
+        self.fields['fecha_nacimiento'].input_formats = ['%Y-%m-%d']
+
 def ingresar_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente ingresado exitosamente.')
-            return redirect('listar_clientes')  # Redirige a una vista de listado de clientes después de guardar
+            return redirect('listar_cliente')
         else:
-            messages.error(request, 'Hubo un error al ingresar el cliente.')
+            messages.error(request, 'Hubo un error al ingresar el cliente. Por favor, revisa los campos.')
     else:
         form = ClienteForm()
-    
+
     return render(request, 'InterfazMecanico/ingresar_cliente.html', {'form': form})
 
 

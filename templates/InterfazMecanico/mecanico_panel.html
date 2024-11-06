@@ -185,7 +185,7 @@
         </div>
         <div class="dropdown-container">
             <a href="{% url 'ingresar_cliente' %}"><i class="bi bi-person-plus-fill"></i> Ingresar Cliente</a>
-            <a href=""><i class="bi bi-list-ul"></i> Listar Clientes</a>
+            <a href="{% url 'listar_cliente' %}"><i class="bi bi-list-ul"></i> Listar Clientes</a>
         </div>
 
         <!-- Dropdown de Vehículos -->
@@ -219,40 +219,6 @@
             <a href=""><i class="bi bi-file-earmark-text"></i> Registrar Reparación</a>
             <a href=""><i class="bi bi-arrow-repeat"></i> Modificar Estado</a>
             <a href=""><i class="bi bi-palette"></i> Asignar Estilo</a>
-        </div>
-    </div>
-
-    <!-- Contenido principal -->
-    <div class="content">
-        <!-- Encabezado del Panel -->
-        <div class="header">
-            <h2>Ingresar Cliente</h2>
-        </div>
-
-        <!-- Formulario para Ingresar Cliente -->
-        <div class="card mt-4">
-            <div class="card-body">
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" name="telefono">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Registrar Cliente</button>
-                </form>
-            </div>
         </div>
     </div>
 
