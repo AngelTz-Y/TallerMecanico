@@ -66,8 +66,11 @@ class Mecanico(Persona):
 
 # Modelo Cliente
 class Cliente(Persona):
+    registro = models.ForeignKey(Registro, on_delete=models.CASCADE, null=True, blank=True)
+
     telefono = models.CharField(max_length=15, blank=True, null=True)
     direccion = models.CharField(max_length=255, blank=True, null=True)
+    datos_completos = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Cliente: {self.nombre} {self.apellido} - Teléfono: {self.telefono}"
