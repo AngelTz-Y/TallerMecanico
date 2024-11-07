@@ -58,6 +58,7 @@ class Administrador(Persona):
 
 # Modelo Mecánico
 class Mecanico(Persona):
+    registro = models.ForeignKey(Registro, on_delete=models.CASCADE, null=True)
     pin = models.CharField(max_length=4, unique=True)  # PIN único de 4 dígitos para mecánicos
 
     def __str__(self):

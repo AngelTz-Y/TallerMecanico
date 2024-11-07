@@ -15,5 +15,6 @@ urlpatterns = [
     path('admin_panel/consultar_historico_reparaciones/<str:patente>/', consultar_historico_reparaciones, name='consultar_historico_reparaciones'),
     path('mecanico_panel/', mecanico_panel, name='dashboard_mecanico'),
     path('mecanico_panel/ingresar_cliente/', ingresar_cliente, name='ingresar_cliente'),
-    path('mecanico_panel/listar/', listar_clientes, name="listar_cliente")
+    path('mecanico_panel/listar/', listar_clientes, name="listar_cliente"),
+    path('cliente_panel/', cliente_panel, name='cliente_panel')
 ]
